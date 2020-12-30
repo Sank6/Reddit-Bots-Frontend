@@ -1,5 +1,5 @@
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
    ** Headers of the page
    */
@@ -23,7 +23,9 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    "bulma"
+  ],
   /*
    ** Plugins to load before mounting the App
    */
