@@ -83,12 +83,14 @@ export default {
   data() {
     return {
       bots_chunked: [],
+      bots: [],
+      page: 0
     };
   },
   async fetch() {
-    this.bots_chunked = (
-      await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list`).then((res) => res.json())
-    ).chunk(3);
+    let fetched = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list`).then((res) => res.json());
+    this.bots_chunked = (fetched).chunk(3);
+    this.bots = [...fetched];
   },
   methods: {
     format(date) {
@@ -98,6 +100,22 @@ export default {
         day: "numeric",
       });
     },
+    handleScroll () {
+      (async () => {
+        if (window.scrollMaxY - window.scrollY < 50) {
+          page ++;
+          let fetched = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list?page=${page}`).then((res) => res.json())
+          this.bots.concat(fetched);
+          this.bots_chunked = (this.bots).chunk(3);
+        }
+      })()
+    }
   },
+  beforeMount () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 };
 </script>
