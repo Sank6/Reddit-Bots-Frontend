@@ -1,0 +1,21 @@
+.title {
+    font-size: 4rem;
+}
+
+#container {
+    margin: 10px 20px;
+}
+
+.card {
+    margin: 20px 0;
+}
+
+.description {
+    height: 100px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.avatar img {
+    border-radius: 10px;
+}

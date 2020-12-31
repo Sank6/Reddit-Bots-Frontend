@@ -1,71 +1,91 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        Reddit Bots
-      </h1>
-      <h2 class="subtitle">
-        A collection of reddit bots
-      </h2>
-      <div class="links">
-        <a
-          href="/list"
-          class="button is-primary is-large"
+  <div>
+    <h1 class="title">Reddit Bots</h1>
+    <p v-if="$fetchState.pending">Fetching ...</p>
+    <p v-else-if="$fetchState.error">An error occurred :(</p>
+    <div v-else>
+      <div class="columns is-desktop">
+        <div
+          class="column"
+          v-for="bot_chunk of bots_chunked"
+          v-bind:key="bot_chunk"
         >
-          View Bots
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button is-secondary is-light is-large"
-        >
-          GitHub
-        </a>
+          <div class="card" v-for="bot of bot_chunk" v-bind:key="bot">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48 avatar">
+                    <img :src="bot.avatar" alt="Placeholder image" />
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">{{ bot.username }}</p>
+                  <p class="subtitle is-6">
+                    <a
+                      :href="`https://reddit.com/u/${bot.username}`"
+                      target="_blank"
+                      >u/{{ bot.username }}</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="content">
+                <div class="description">
+                  {{ bot.description || "No description provided" }}
+                </div>
+                Cake Day:
+                <time :datetime="bot.cakeDay">{{ format(bot.cakeDay) }}</time>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a
+                :href="`https://reddit.com/u/${bot.username}`"
+                class="card-footer-item has-text-primary"
+                target="_blank"
+                >View</a
+              >
+              <a href="#" class="card-footer-item has-text-primary">Like</a>
+              <a href="#" class="card-footer-item has-text-warning">Report</a>
+            </footer>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+Object.defineProperty(Array.prototype, "chunk", {
+  value: function(chunks) {
+    let result = [];
+    for (let i = chunks; i > 0; i--) {
+      result.push(this.splice(0, Math.ceil(this.length / i)));
+    }
+    return result;
+  },
+});
 
 export default {
-  components: {
-    Logo
-  }
-}
+  data() {
+    return {
+      bots_chunked: [],
+    };
+  },
+  async fetch() {
+    this.bots_chunked = (
+      await fetch("http://localhost:3001/list").then((res) => res.json())
+    ).chunk(3);
+    console.log(this.bots_chunked);
+  },
+  methods: {
+    format(date) {
+      console.log(date, typeof date);
+      return new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    },
+  },
+};
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

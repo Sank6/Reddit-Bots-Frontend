@@ -14,7 +14,10 @@ export default {
         content: "A collection of Reddit bots",
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'main.css' }
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -24,7 +27,14 @@ export default {
    ** Global CSS
    */
   css: [
-    "bulma"
+    {
+      src: '~assets/css/darkly.scss',
+      lang: 'scss'
+    },
+    {
+      src: '~assets/css/main.scss',
+      lang: 'scss'
+    }
   ],
   /*
    ** Plugins to load before mounting the App
