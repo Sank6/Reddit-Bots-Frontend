@@ -43,11 +43,18 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    '@nuxtjs/axios'
+  ],
+
+  axios: {
+    baseURL: "https://api.redditbots.ninja",
+    credentials: true
+  },
   /*
    ** Build configuration
    */
-  buildModules: ["@nuxtjs/fontawesome"],
+  buildModules: ['@nuxtjs/fontawesome'],
   fontawesome: {
     icons: {
       solid: true
