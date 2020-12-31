@@ -29,7 +29,7 @@
           <div class="navbar-item">
             <div
               class="buttons"
-              v-if="$fetchState.pending || $fetchState.error"
+              v-if="!user"
             >
               <a class="button is-light" :href="api_url + '/auth/login'">
                 Log in
@@ -59,8 +59,10 @@ export default {
     };
   },
   async fetch() {
-    let res = await this.$axios.$get("/auth/info");
-    if (res.success) this.user = res.user
+    let result = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/auth/info`, {credentials: 'include'}).then((res) => res.json())
+    if (result.success) {
+      this.user = result.user
+    }
   },
 };
 </script>
