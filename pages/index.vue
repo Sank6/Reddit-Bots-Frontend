@@ -75,11 +75,9 @@ export default {
     this.bots_chunked = (
       await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list`).then((res) => res.json())
     ).chunk(3);
-    console.log(this.bots_chunked);
   },
   methods: {
     format(date) {
-      console.log(date, typeof date);
       return new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
