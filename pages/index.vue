@@ -99,6 +99,7 @@ export default {
         )}/list`
       ).then((res) => res.json())
     );
+    console.log(this.bots)
     this.bots_chunked = this.bots.chunk(3);
   },
   methods: {
