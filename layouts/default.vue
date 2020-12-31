@@ -56,6 +56,7 @@ export default {
     return {
       showNav: false,
       user: null,
+      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`
     };
   },
   async fetch() {
