@@ -54,12 +54,6 @@
                 </span>
                 View
               </a>
-              <a href="#" class="card-footer-item has-text-primary">
-                <span class="icon">
-                  <font-awesome-icon :icon="['fas', 'heart']" />
-                </span>
-                Like
-              </a>
               <a href="#" class="card-footer-item has-text-warning">
                 <span class="icon">
                   <font-awesome-icon :icon="['fas', 'flag']" />
