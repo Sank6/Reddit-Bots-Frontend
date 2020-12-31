@@ -57,7 +57,7 @@ export default {
     };
   },
   async fetch() {
-    let res = await (await fetch(`${this.api_url}/auth/info`)).json();
+    let res = await (await fetch(`${this.api_url}/auth/info`), {credentials: "include"}).json();
     if (res.success) {
       this.user = res.user
     }
