@@ -103,8 +103,8 @@ export default {
     handleScroll () {
       (async () => {
         if (window.scrollMaxY - window.scrollY < 50) {
-          page ++;
-          let fetched = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list?page=${page}`).then((res) => res.json())
+          this.page ++;
+          let fetched = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list?page=${this.page}`).then((res) => res.json())
           this.bots.concat(fetched);
           this.bots_chunked = (this.bots).chunk(3);
         }
