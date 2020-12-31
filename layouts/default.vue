@@ -56,11 +56,10 @@ export default {
     return {
       showNav: false,
       user: null,
-      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`
     };
   },
   async fetch() {
-    let result = await fetch(`${this.api_url}/auth/info`, {credentials: 'include'}).then((res) => res.json())
+    let result = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/auth/info`, {credentials: 'include'}).then((res) => res.json())
     if (result.success) {
       this.user = result.user
     }

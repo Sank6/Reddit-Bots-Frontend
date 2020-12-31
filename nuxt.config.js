@@ -39,9 +39,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    {src: '~plugins/vue-infinite-scroll.js', ssr: false}
-  ],
+  plugins: [],
   /*
    ** Nuxt.js modules
    */

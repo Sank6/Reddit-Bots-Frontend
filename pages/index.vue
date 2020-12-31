@@ -2,10 +2,7 @@
   <div>
     <h1 class="title">Reddit Bots</h1>
     <div class="lds-ring" v-if="$fetchState.pending">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div><div></div>
     </div>
     <p v-else-if="$fetchState.error">An error occurred :(</p>
     <div v-else>
@@ -65,7 +62,6 @@
               </a>
             </footer>
           </div>
-          <infinite-loading @infinite="infiniteHandler"></infinite-loading>
         </div>
       </div>
     </div>
@@ -86,21 +82,13 @@ Object.defineProperty(Array.prototype, "chunk", {
 export default {
   data() {
     return {
-      bots: [],
       bots_chunked: [],
     };
   },
   async fetch() {
-    this.bots.push(
-      await fetch(
-        `${window.location.protocol}//api.${window.location.hostname.replace(
-          "www.",
-          ""
-        )}/list`
-      ).then((res) => res.json())
-    );
-    console.log(this.bots)
-    this.bots_chunked = this.bots.chunk(3);
+    this.bots_chunked = (
+      await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list`).then((res) => res.json())
+    ).chunk(3);
   },
   methods: {
     format(date) {
@@ -109,24 +97,6 @@ export default {
         month: "long",
         day: "numeric",
       });
-    },
-    infiniteHandler($state) {
-      (async () => {
-        let result = await fetch(
-          `${window.location.protocol}//api.${window.location.hostname.replace(
-            "www.",
-            ""
-          )}/list?page=${this.page}`
-        ).then((res) => res.json());
-        if (result.length) {
-          this.page += 1;
-          this.bots.push(result);
-          this.bots_chunked = this.bots.chunk(3);
-          $state.loaded();
-        } else {
-          $state.complete();
-        }
-      })();
     },
   },
 };
