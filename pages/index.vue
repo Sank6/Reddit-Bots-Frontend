@@ -73,7 +73,7 @@ export default {
   },
   async fetch() {
     this.bots_chunked = (
-      await fetch("https://api.sankobot.world/list").then((res) => res.json())
+      await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list`).then((res) => res.json())
     ).chunk(3);
     console.log(this.bots_chunked);
   },
