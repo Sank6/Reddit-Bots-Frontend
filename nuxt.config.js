@@ -16,7 +16,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'main.css' }
+      { rel: 'stylesheet', href: 'loader.css' }
     ],
   },
   /*
@@ -47,6 +47,12 @@ export default {
   /*
    ** Build configuration
    */
+  buildModules: ["@nuxtjs/fontawesome"],
+  fontawesome: {
+    icons: {
+      solid: true
+    }
+  },
   build: {
     /*
      ** You can extend webpack config here

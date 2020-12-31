@@ -14,6 +14,8 @@
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "nodemon": "^1.18.9",
     "sass": "^1.32.0",
     "sass-loader": "^10.1.0"

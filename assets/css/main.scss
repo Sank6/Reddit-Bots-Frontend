@@ -11,11 +11,24 @@
 }
 
 .description {
+    padding: 5px;
     height: 100px;
     overflow-y: auto;
     scrollbar-width: thin;
 }
 
 .avatar img {
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+}
+
+.icon {
+    margin: 0 5px;
+    position: relative;
+    bottom: -1px;
+}
+
+.cake {
+    padding-top: 10px;
+    user-select: none;
 }

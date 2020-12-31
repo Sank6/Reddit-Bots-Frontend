@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1 class="title">Reddit Bots</h1>
-    <p v-if="$fetchState.pending">Fetching ...</p>
+    <div class="lds-ring" v-if="$fetchState.pending">
+      <div></div><div></div><div></div><div></div>
+    </div>
     <p v-else-if="$fetchState.error">An error occurred :(</p>
     <div v-else>
       <div class="columns is-desktop">
@@ -33,8 +35,12 @@
                 <div class="description">
                   {{ bot.description || "No description provided" }}
                 </div>
-                Cake Day:
-                <time :datetime="bot.cakeDay">{{ format(bot.cakeDay) }}</time>
+                <div class="cake has-text-grey">
+                  <span class="icon">
+                    <font-awesome-icon :icon="['fas', 'birthday-cake']" />
+                  </span>
+                  <time :datetime="bot.cakeDay">{{ format(bot.cakeDay) }}</time>
+                </div>
               </div>
             </div>
             <footer class="card-footer">
@@ -42,10 +48,24 @@
                 :href="`https://reddit.com/u/${bot.username}`"
                 class="card-footer-item has-text-primary"
                 target="_blank"
-                >View</a
               >
-              <a href="#" class="card-footer-item has-text-primary">Like</a>
-              <a href="#" class="card-footer-item has-text-warning">Report</a>
+                <span class="icon">
+                  <font-awesome-icon :icon="['fas', 'link']" />
+                </span>
+                View
+              </a>
+              <a href="#" class="card-footer-item has-text-primary">
+                <span class="icon">
+                  <font-awesome-icon :icon="['fas', 'heart']" />
+                </span>
+                Like
+              </a>
+              <a href="#" class="card-footer-item has-text-warning">
+                <span class="icon">
+                  <font-awesome-icon :icon="['fas', 'flag']" />
+                </span>
+                Report
+              </a>
             </footer>
           </div>
         </div>
@@ -78,7 +98,7 @@ export default {
   },
   methods: {
     format(date) {
-      return new Date(date).toLocaleDateString("en-US", {
+      return new Date(date).toLocaleDateString("en-GB", {
         year: "numeric",
         month: "long",
         day: "numeric",
