@@ -36,6 +36,8 @@ export default {
       lang: 'scss'
     }
   ],
+  
+  components: true,
   /*
    ** Plugins to load before mounting the App
    */
