@@ -92,7 +92,12 @@ export default {
   },
   async fetch() {
     this.bots.push(
-      await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list`).then((res) => res.json())
+      await fetch(
+        `${window.location.protocol}//api.${window.location.hostname.replace(
+          "www.",
+          ""
+        )}/list`
+      ).then((res) => res.json())
     );
     this.bots_chunked = this.bots.chunk(3);
   },
@@ -105,15 +110,22 @@ export default {
       });
     },
     infiniteHandler($state) {
-      let result = await fetch(`${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}/list?page=${this.page}`).then((res) => res.json())
-      if (result.length) {
-        this.page += 1;
-        this.bots.push(result);
-        this.bots_chunked = this.bots.chunk(3);
-        $state.loaded();
-      } else {
-        $state.complete();
-      }
+      (async () => {
+        let result = await fetch(
+          `${window.location.protocol}//api.${window.location.hostname.replace(
+            "www.",
+            ""
+          )}/list?page=${this.page}`
+        ).then((res) => res.json());
+        if (result.length) {
+          this.page += 1;
+          this.bots.push(result);
+          this.bots_chunked = this.bots.chunk(3);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })();
     },
   },
 };
