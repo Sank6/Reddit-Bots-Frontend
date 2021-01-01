@@ -4,7 +4,7 @@
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48 avatar">
-            <img :src="bot.avatar" alt="Placeholder image" />
+            <img :src="bot.avatar" alt="Bot Avatar" />
           </figure>
         </div>
         <div class="media-content">

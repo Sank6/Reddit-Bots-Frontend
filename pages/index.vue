@@ -34,8 +34,8 @@ export default {
     return {
       bots: [],
       page: 0,
-      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`
-      //api_url: "http://localhost:3001",
+      //api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`
+      api_url: "http://localhost:3001",
     };
   },
   async fetch() {
