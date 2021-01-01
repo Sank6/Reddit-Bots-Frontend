@@ -146,7 +146,7 @@ export default {
   props: ["bot"],
   data() {
     return {
-      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`
+      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`,
       //api_url: "http://localhost:3001",
       response: null,
     };
