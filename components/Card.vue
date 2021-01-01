@@ -186,7 +186,8 @@ export default {
         reason = document.getElementById(`${bot.username}-input`).value;
       else reason = document.getElementById(`${bot.username}-select`).value;
       (async () => {
-        this.response = await this.$axios.post("/report", {userReported: bot.username, reason });
+        const { data } = await this.$axios.post("/report", {userReported: bot.username, reason });
+        this.response = data;
       })();
     },
   },
