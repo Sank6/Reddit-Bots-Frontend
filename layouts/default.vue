@@ -68,17 +68,14 @@ export default {
     return {
       showNav: false,
       user: null,
-      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`,
-      //api_url: "http://localhost:3001"
+      api_url: this.$axios.defaults.baseURL,
     };
   },
   async fetch() {
-    let result = await fetch(`${this.api_url}/auth/info`, {
-      credentials: "include",
-    }).then((res) => res.json());
-    if (result.success) {
-      this.user = result.user;
-    }
+    try {
+      let result = await this.$axios.$get(`/auth/info`, { withCredentials: true })
+      if (result.success) this.user = result.user;
+    } catch(e) {}
   },
 };
 </script>

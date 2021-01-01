@@ -132,7 +132,10 @@
           </button>
         </footer>
         <footer class="modal-card-foot" v-else>
-          <button class="button is-secondary" @click="close(bot.username + '-modal')">
+          <button
+            class="button is-secondary"
+            @click="close(bot.username + '-modal')"
+          >
             Close
           </button>
         </footer>
@@ -146,8 +149,7 @@ export default {
   props: ["bot"],
   data() {
     return {
-      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`,
-      //api_url: "http://localhost:3001",
+      api_url: this.$axios.defaults.baseURL,
       response: null,
     };
   },
@@ -184,16 +186,7 @@ export default {
         reason = document.getElementById(`${bot.username}-input`).value;
       else reason = document.getElementById(`${bot.username}-select`).value;
       (async () => {
-        const opts = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userReported: bot.username, reason }),
-          credentials: "include",
-        };
-        this.response = await fetch(
-          `${this.api_url}/report`,
-          opts
-        ).then((res) => res.json());
+        this.response = await this.$axios.post("/report", {userReported: bot.username, reason });
       })();
     },
   },

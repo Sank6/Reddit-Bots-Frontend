@@ -34,12 +34,11 @@ export default {
     return {
       bots: [],
       page: 0,
-      api_url: `${window.location.protocol}//api.${window.location.hostname.replace("www.", "")}`,
-      //api_url: "http://localhost:3001",
+      api_url: this.$axios.defaults.baseURL,
     };
   },
   async fetch() {
-    let fetched = await fetch(`${this.api_url}/list`).then((res) => res.json());
+    let fetched = await this.$axios.$get(`/list`)
     this.bots = [...fetched];
   },
   methods: {
@@ -47,9 +46,7 @@ export default {
       (async () => {
         if (window.scrollMaxY - window.scrollY < 50) {
           this.page++;
-          let fetched = await fetch(
-            `${this.api_url}/list?page=${this.page}`
-          ).then((res) => res.json());
+          let fetched = await this.$axios.$get(`/list?page=${this.page}`)
           this.bots = this.bots.concat(fetched).filter((v,i,a)=>a.findIndex(t=>(t.username === v.username))===i);
         }
       })();
