@@ -36,7 +36,7 @@
               <div class="navbar-item has-dropdown is-hoverable is-hidden-tablet-only is-hidden-mobile">
                 <a class="navbar-link">
                 <figure class="image is-32x32 avatar profile-pic">
-                  <img :src="user.avatar" :alt="user.username" class="is-rounded"/>
+                  <img :src="user.avatar.split('?')[0]" :alt="user.username" class="is-rounded"/>
                 </figure>
                   {{ user.username }}
                 </a>
