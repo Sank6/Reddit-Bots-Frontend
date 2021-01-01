@@ -50,7 +50,7 @@ export default {
           let fetched = await fetch(
             `${this.api_url}/list?page=${this.page}`
           ).then((res) => res.json());
-          this.bots = this.bots.concat(fetched);
+          this.bots = this.bots.concat(fetched).filter((v,i,a)=>a.findIndex(t=>(t.username === v.username))===i);
         }
       })();
     },
