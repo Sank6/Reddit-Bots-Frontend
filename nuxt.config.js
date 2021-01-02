@@ -74,8 +74,7 @@ export default {
   ],
 
   axios: {
-    //baseURL: "https://api.redditbots.ninja",
-    baseURL: "http://localhost:3001",
+    baseURL: "https://api.redditbots.ninja",
     credentials: true,
   },
   /*
