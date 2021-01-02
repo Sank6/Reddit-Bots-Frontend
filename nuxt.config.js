@@ -37,7 +37,7 @@ export default {
       { rel: "msapplication-TileColor", color: "#da532c" },
       { rel: "theme-color", color: "#7700ff" },
       { rel: "stylesheet", href: "loader.css" },
-      { rel: "stylesheet", href: "cookieconsent.min.css" }
+      { rel: "stylesheet", href: "/cookieconsent.min.css" }
     ],
     script: [
       { src: "/cookieconsent.min.js" }

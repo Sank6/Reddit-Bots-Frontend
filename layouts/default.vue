@@ -122,6 +122,7 @@ window.cookieconsent.initialise({
   content: {
     message: "We use cookies for Reddit login",
     href: '/about',
+    target: '_self',
   },
   domain: "https://redditbots.ninja",
   position: "bottom-right",
