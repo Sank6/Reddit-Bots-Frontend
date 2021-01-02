@@ -15,15 +15,15 @@
 
       <div class="navbar-menu" :class="{ 'is-active': showNav }">
         <div class="navbar-start navbar-padded">
-          <a class="navbar-item" href="/">
+          <nuxt-link class="navbar-item" to="/">
             Home
-          </a>
-          <a class="navbar-item" href="/about">
+          </nuxt-link>
+          <nuxt-link class="navbar-item" to="/about">
             About
-          </a>
-          <a class="navbar-item" href="/contact">
+          </nuxt-link>
+          <nuxt-link class="navbar-item" to="/contact">
             Contact
-          </a>
+          </nuxt-link>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
@@ -37,7 +37,7 @@
                 class="navbar-item has-dropdown is-hoverable is-hidden-tablet-only is-hidden-mobile"
               >
                 <a class="navbar-link">
-                  <figure class="image is-32x32 avatar profile-pic">
+                  <figure class="image is-32x32 avatar profile-pic mr-2">
                     <img
                       :src="user.avatar.split('?')[0]"
                       :alt="user.username"
@@ -123,8 +123,5 @@ window.cookieconsent.initialise({
 
 .profile-pic img {
   max-height: none !important;
-}
-.profile-pic {
-  margin-right: 10px;
 }
 </style>
