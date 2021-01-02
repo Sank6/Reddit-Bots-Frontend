@@ -33,11 +33,17 @@
               </a>
             </div>
             <div v-else>
-              <div class="navbar-item has-dropdown is-hoverable is-hidden-tablet-only is-hidden-mobile">
+              <div
+                class="navbar-item has-dropdown is-hoverable is-hidden-tablet-only is-hidden-mobile"
+              >
                 <a class="navbar-link">
-                <figure class="image is-32x32 avatar profile-pic">
-                  <img :src="user.avatar.split('?')[0]" :alt="user.username" class="is-rounded"/>
-                </figure>
+                  <figure class="image is-32x32 avatar profile-pic">
+                    <img
+                      :src="user.avatar.split('?')[0]"
+                      :alt="user.username"
+                      class="is-rounded"
+                    />
+                  </figure>
                   {{ user.username }}
                 </a>
 
@@ -47,8 +53,11 @@
                   </a>
                 </div>
               </div>
-              
-              <a class="navbar-item is-hidden-desktop" :href="api_url + '/logout'">
+
+              <a
+                class="navbar-item is-hidden-desktop"
+                :href="api_url + '/logout'"
+              >
                 Logout
               </a>
             </div>
@@ -73,9 +82,11 @@ export default {
   },
   async fetch() {
     try {
-      let result = await this.$axios.$get(`/auth/info`, { withCredentials: true })
+      let result = await this.$axios.$get(`/auth/info`, {
+        withCredentials: true,
+      });
       if (result.success) this.user = result.user;
-    } catch(e) {}
+    } catch (e) {}
   },
 };
 </script>
@@ -92,3 +103,28 @@ export default {
   margin-right: 10px;
 }
 </style>
+
+<script>
+window.cookieconsent.initialise({
+  container: document.getElementById("content"),
+  palette: {
+    popup: { background: "#5e6d6f" },
+    button: { background: "#7700ff" },
+  },
+  revokable: true,
+  onStatusChange: function(status) {
+    console.log(this.hasConsented() ? "enable cookies" : "disable cookies");
+  },
+  law: {
+    regionalLaw: true,
+  },
+  location: true,
+  content: {
+    message: "We use cookies for Reddit login",
+    href: '/about',
+  },
+  domain: "https://redditbots.ninja",
+  position: "bottom-right",
+  theme: "edgeless"
+});
+</script>
