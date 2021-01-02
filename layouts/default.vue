@@ -89,22 +89,8 @@ export default {
     } catch (e) {}
   },
 };
-</script>
 
-<style>
-.navbar-padded {
-  padding-left: 10px;
-}
-
-.profile-pic img {
-  max-height: none !important;
-}
-.profile-pic {
-  margin-right: 10px;
-}
-</style>
-
-<script>
+// Cookie Consent
 window.cookieconsent.initialise({
   container: document.getElementById("content"),
   palette: {
@@ -129,3 +115,16 @@ window.cookieconsent.initialise({
   theme: "edgeless"
 });
 </script>
+
+<style>
+.navbar-padded {
+  padding-left: 10px;
+}
+
+.profile-pic img {
+  max-height: none !important;
+}
+.profile-pic {
+  margin-right: 10px;
+}
+</style>
