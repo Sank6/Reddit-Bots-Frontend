@@ -1,8 +1,8 @@
 {
-  "name": "nuxtjs",
+  "name": "reddit-bots",
   "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
-  "author": "msweeneydev",
+  "description": "A collection of Reddit Bots",
+  "author": "Sank6",
   "private": true,
   "scripts": {
     "dev": "nuxt",
