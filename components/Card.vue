@@ -73,6 +73,11 @@
                 </span>
                 {{ botInfo.karma }}
               </p>
+              <button
+                class="delete"
+                aria-label="close"
+                @click="close(bot.username + '-modal')"
+              ></button>
             </div>
             <div class="content">
               <div
