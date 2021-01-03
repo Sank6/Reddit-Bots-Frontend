@@ -89,31 +89,6 @@ export default {
     } catch (e) {}
   },
 };
-
-// Cookie Consent
-window.cookieconsent.initialise({
-  container: document.getElementById("content"),
-  palette: {
-    popup: { background: "#5e6d6f" },
-    button: { background: "#7700ff" },
-  },
-  revokable: true,
-  onStatusChange: function(status) {
-    console.log(this.hasConsented() ? "enable cookies" : "disable cookies");
-  },
-  law: {
-    regionalLaw: true,
-  },
-  location: true,
-  content: {
-    message: "We use cookies for Reddit login",
-    href: '/about',
-    target: '_self',
-  },
-  domain: "https://redditbots.ninja",
-  position: "bottom-right",
-  theme: "edgeless"
-});
 </script>
 
 <style>
